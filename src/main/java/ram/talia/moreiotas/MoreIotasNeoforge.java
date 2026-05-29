@@ -38,7 +38,7 @@ public class MoreIotasNeoforge {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final SimpleMatrix crasher = new SimpleMatrix(1,1, false);
+    // public static final SimpleMatrix crasher = new SimpleMatrix(1,1, false);
 
     public static ResourceLocation id(String str) {
         return ResourceLocation.fromNamespaceAndPath(MODID, str);

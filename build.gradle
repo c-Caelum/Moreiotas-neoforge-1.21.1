@@ -210,40 +210,32 @@ dependencies {
     runtimeOnly("com.illusivesoulworks.caelus:caelus-neoforge:$caelus_version+$minecraft_version")
     compileOnly("com.illusivesoulworks.caelus:caelus-neoforge:$caelus_version+$minecraft_version:api")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    //implementation ("org.ejml:ejml-all:${ejml_version}")
-    // Cursed™
 
-    // I don't even know anymore.
+    implementation("org.ejml:ejml-simple:${ejml_version}")
+    implementation("org.ejml:ejml-core:${ejml_version}")
+    implementation("org.ejml:ejml-ddense:${ejml_version}")
 
-    /*jarJar(implementation("org.ejml:ejml-all:${ejml_version}")) {
+    // allows non-mod libraries to work in dev env
+    additionalRuntimeClasspath("org.ejml:ejml-simple:${ejml_version}")
+    additionalRuntimeClasspath("org.ejml:ejml-core:${ejml_version}")
+    additionalRuntimeClasspath("org.ejml:ejml-ddense:${ejml_version}")
+
+    // allows non-mod libraries to work in production jars
+    jarJar(implementation("org.ejml:ejml-simple:${ejml_version}")) {
         version {
-            strictly "[${ejml_version},)"
-            prefer ejml_version
+            prefer '${ejml_version}'
         }
     }
-
-    jarJar(additionalRuntimeClasspath("org.ejml:ejml-all:${ejml_version}")) {
+    jarJar(implementation("org.ejml:ejml-core:${ejml_version}")) {
         version {
-            strictly "[${ejml_version},)"
-            prefer ejml_version
+            prefer '${ejml_version}'
         }
-    }*/
-
-    implementation("org.ejml:ejml-all:${ejml_version}") {
-        transitive = false
     }
-    additionalRuntimeClasspath("org.ejml:ejml-all:${ejml_version}") {
-        transitive = false
+    jarJar(implementation("org.ejml:ejml-ddense:${ejml_version}")) {
+        version {
+            prefer '${ejml_version}'
+        }
     }
-
-    implementation group: "org.ejml", name: "ejml-all", version: "${ejml_version}"
-    additionalRuntimeClasspath group: "org.ejml", name: "ejml-all", version: "${ejml_version}"
-    implementation group: "org.ejml", name: "ejml-core", version: "${ejml_version}"
-    additionalRuntimeClasspath group: "org.ejml", name: "ejml-core", version: "${ejml_version}"
-    implementation group: "org.ejml", name: "ejml-simple", version: "${ejml_version}"
-    additionalRuntimeClasspath group: "org.ejml", name: "ejml-simple", version: "${ejml_version}"
-    implementation group: "org.ejml", name: "ejml-ddense", version: "${ejml_version}"
-    additionalRuntimeClasspath group: "org.ejml", name: "ejml-ddense", version: "${ejml_version}"
 
     runtimeOnly("me.shedaniel.cloth:cloth-config-neoforge:$clothConfigVersion")
     //\implementation("org.sinytra.forgified-fabric-api:fabric-api-base:0.4.42+d1308dedd1")
