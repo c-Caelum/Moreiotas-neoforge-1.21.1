@@ -213,17 +213,33 @@ dependencies {
 
     // jarJar packages non-mod libraries into production jars so they can be accessed while playing
     // additionalRuntimeClassPath makes them accessible in the dev env
-    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-simple:${ejml_version}"))) {
-        version {
-            prefer '${ejml_version}'
-        }
-    }
+    // DEPENDENCIES MUST BE EXCLUDED. THIS TOOK ME FUCKING FOREVER. Otherwise, they are stripped of the ability to
+    // be added to additionalRuntimeClasspath at all.
+
     jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-core:${ejml_version}"))) {
         version {
             prefer '${ejml_version}'
         }
     }
-    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-ddense:${ejml_version}"))) {
+
+    additionalRuntimeClasspath("org.ejml:ejml-ddense:${ejml_version}")
+    implementation("org.ejml:ejml-ddense:${ejml_version}")
+
+    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-ddense:${ejml_version}") {
+        transitive = false
+    }) {
+        transitive = false
+    }) {
+        version {
+            prefer '${ejml_version}'
+        }
+    }
+
+    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-simple:${ejml_version}") {
+        transitive = false
+    }) {
+        transitive = false
+    }) {
         version {
             prefer '${ejml_version}'
         }

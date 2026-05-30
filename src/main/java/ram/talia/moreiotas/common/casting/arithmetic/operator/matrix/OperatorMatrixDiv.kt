@@ -22,7 +22,7 @@ object OperatorMatrixDiv : OperatorBasic(2, any(ofType(MATRIX), or(ofType(DOUBLE
         val arg1 = it.nextNumOrVecOrMatrix(arity)
 
         // if the first argument is a number, return number / matrix (right division)
-        arg0.a?.let { return (arg1.asMatrix.divide(it)).asActionResult }
+        arg0.a?.let { return (arg1.asMatrix.invert().scale(it).asActionResult) }
         // if the second argument is a number, return matrix / number (left division)
         arg1.a?.let { return (arg0.asMatrix.divide(it)).asActionResult }
 

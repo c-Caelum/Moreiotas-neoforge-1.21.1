@@ -1,11 +1,13 @@
 package ram.talia.moreiotas;
 
 import at.petrak.hexcasting.api.casting.iota.DoubleIota;
+import at.petrak.hexcasting.common.lib.HexDataComponents;
 import at.petrak.hexcasting.common.lib.HexRegistries;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.neoforged.bus.EventBus;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -38,8 +40,6 @@ public class MoreIotasNeoforge {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // public static final SimpleMatrix crasher = new SimpleMatrix(1,1, false);
-
     public static ResourceLocation id(String str) {
         return ResourceLocation.fromNamespaceAndPath(MODID, str);
     }
@@ -71,8 +71,8 @@ public class MoreIotasNeoforge {
                 });
             });
         });
-        //bind(HexRegistries.ARITHMETIC, MoreIotasArithmetics::register, bus);
-        //bind(HexRegistries.IOTA_TYPE, MoreIotasIotaTypes::registerTypes, bus);
+        bind(HexRegistries.ARITHMETIC, MoreIotasArithmetics::register, bus);
+        bind(HexRegistries.IOTA_TYPE, MoreIotasIotaTypes::registerTypes, bus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
