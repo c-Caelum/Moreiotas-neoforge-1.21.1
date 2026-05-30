@@ -211,27 +211,19 @@ dependencies {
     compileOnly("com.illusivesoulworks.caelus:caelus-neoforge:$caelus_version+$minecraft_version:api")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation("org.ejml:ejml-simple:${ejml_version}")
-    implementation("org.ejml:ejml-core:${ejml_version}")
-    implementation("org.ejml:ejml-ddense:${ejml_version}")
-
-    // allows non-mod libraries to work in dev env
-    additionalRuntimeClasspath("org.ejml:ejml-simple:${ejml_version}")
-    additionalRuntimeClasspath("org.ejml:ejml-core:${ejml_version}")
-    additionalRuntimeClasspath("org.ejml:ejml-ddense:${ejml_version}")
-
-    // allows non-mod libraries to work in production jars
-    jarJar(implementation("org.ejml:ejml-simple:${ejml_version}")) {
+    // jarJar packages non-mod libraries into production jars so they can be accessed while playing
+    // additionalRuntimeClassPath makes them accessible in the dev env
+    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-simple:${ejml_version}"))) {
         version {
             prefer '${ejml_version}'
         }
     }
-    jarJar(implementation("org.ejml:ejml-core:${ejml_version}")) {
+    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-core:${ejml_version}"))) {
         version {
             prefer '${ejml_version}'
         }
     }
-    jarJar(implementation("org.ejml:ejml-ddense:${ejml_version}")) {
+    jarJar(additionalRuntimeClasspath(implementation("org.ejml:ejml-ddense:${ejml_version}"))) {
         version {
             prefer '${ejml_version}'
         }
