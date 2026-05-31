@@ -15,8 +15,7 @@ import ram.talia.moreiotas.MoreIotasConfig;
 import ram.talia.moreiotas.api.MoreIotasCodecs;
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes;
 
-import static ram.talia.moreiotas.MoreIotasNeoforge.LOGGER;
-import static ram.talia.moreiotas.MoreIotasNeoforge.matrixIsEmpty;
+import static ram.talia.moreiotas.MoreIotas.matrixIsEmpty;
 
 public class MatrixIota extends Iota {
 

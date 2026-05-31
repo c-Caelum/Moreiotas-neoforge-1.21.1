@@ -11,7 +11,7 @@ import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.api.casting.math.HexPattern.Companion.fromAngles
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.InteractionHand
-import ram.talia.moreiotas.MoreIotasNeoforge.id;
+import ram.talia.moreiotas.MoreIotas.id;
 import ram.talia.moreiotas.api.casting.iota.StringIota
 import ram.talia.moreiotas.common.casting.actions.items.OpGetHeldItem
 import ram.talia.moreiotas.common.casting.actions.items.OpGetInventoryContents

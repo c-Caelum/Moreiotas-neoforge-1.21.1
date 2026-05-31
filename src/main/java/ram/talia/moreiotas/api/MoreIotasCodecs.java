@@ -3,16 +3,11 @@ package ram.talia.moreiotas.api;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import org.apache.commons.lang3.ArrayUtils;
 import org.ejml.simple.SimpleMatrix;
-import static ram.talia.moreiotas.MoreIotasNeoforge.LOGGER;
+import static ram.talia.moreiotas.MoreIotas.LOGGER;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MoreIotasCodecs {
     public static final Codec<SimpleMatrix> SIMPLEMATRIX = Codec.DOUBLE.listOf().listOf().<SimpleMatrix>xmap((List<List<Double>> list) -> {

@@ -2,14 +2,13 @@ package ram.talia.moreiotas.api;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.ServerChatEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import static ram.talia.moreiotas.MoreIotasNeoforge.LOGGER;
+import static ram.talia.moreiotas.MoreIotas.LOGGER;
 
 public class ChatEventHandler {
     private static final String TAG_CHAT_PREFIX = "moreiotas:prefix";

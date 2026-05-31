@@ -194,6 +194,8 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+
     implementation("vazkii.patchouli:Patchouli:$minecraft_version-$patchouli_version-NEOFORGE")
     implementation("libs:hexcasting-neoforge-$minecraft_version:$hexcasting_version")
     implementation("libs:paucal:$paucal_version+$minecraft_version-neoforge")

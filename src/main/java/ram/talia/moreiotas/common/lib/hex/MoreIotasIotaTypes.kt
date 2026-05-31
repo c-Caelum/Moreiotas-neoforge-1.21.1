@@ -4,7 +4,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
 import net.minecraft.resources.ResourceLocation
 import org.jetbrains.annotations.ApiStatus
-import ram.talia.moreiotas.MoreIotasNeoforge.id;
+import ram.talia.moreiotas.MoreIotas.id;
 import ram.talia.moreiotas.api.casting.iota.*
 import java.util.function.BiConsumer
 

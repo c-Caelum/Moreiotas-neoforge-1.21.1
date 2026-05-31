@@ -4,7 +4,6 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -18,7 +17,7 @@ import java.util.ServiceLoader;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static ram.talia.moreiotas.MoreIotasNeoforge.LOGGER;
+import static ram.talia.moreiotas.MoreIotas.LOGGER;
 
 public interface IClientXplatAbstractions {
 	void sendPacketToServer(CustomPacketPayload packet);

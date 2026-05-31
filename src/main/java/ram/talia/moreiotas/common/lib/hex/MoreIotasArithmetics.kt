@@ -2,7 +2,7 @@ package ram.talia.moreiotas.common.lib.hex
 
 import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic
 import net.minecraft.resources.ResourceLocation
-import ram.talia.moreiotas.MoreIotasNeoforge.id
+import ram.talia.moreiotas.MoreIotas.id
 import ram.talia.moreiotas.common.casting.arithmetic.MatrixArithmetic
 import ram.talia.moreiotas.common.casting.arithmetic.StringArithmetic
 import ram.talia.moreiotas.common.casting.arithmetic.ItemArithmetic
