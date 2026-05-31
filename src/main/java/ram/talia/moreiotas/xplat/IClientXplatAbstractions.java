@@ -1,13 +1,14 @@
 package ram.talia.moreiotas.xplat;
 
-import at.petrak.hexcasting.common.msgs.IMessage;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 import static ram.talia.moreiotas.MoreIotasNeoforge.LOGGER;
 
 public interface IClientXplatAbstractions {
-	void sendPacketToServer(IMessage packet);
+	void sendPacketToServer(CustomPacketPayload packet);
 	
 	void initPlatformSpecific();
 	
@@ -28,14 +29,14 @@ public interface IClientXplatAbstractions {
 	
 	<T extends ParticleOptions> void registerParticleType(ParticleType<T> type, Function<SpriteSet, ParticleProvider<T>> factory);
 	
-	void registerItemProperty(Item item, ResourceLocation id, ItemPropertyFunction func);
+	void registerItemProperty(Item item, ResourceLocation id, ClampedItemPropertyFunction func);
 	
 	// On Forge, these are already exposed; on Fabric we do a mixin
 	void setFilterSave(AbstractTexture texture, boolean filter, boolean mipmap);
 	
 	void restoreLastFilter(AbstractTexture texture);
 	
-	IClientXplatAbstractions INSTANCE = find();
+	IClientXplatAbstractions INSTANCE = new ForgeClientXplatImpl();
 	
 	private static IClientXplatAbstractions find() {
 		var providers = ServiceLoader.load(IClientXplatAbstractions.class).stream().toList();

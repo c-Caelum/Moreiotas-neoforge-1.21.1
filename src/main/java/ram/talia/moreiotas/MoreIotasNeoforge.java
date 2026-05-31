@@ -1,14 +1,11 @@
 package ram.talia.moreiotas;
 
 import at.petrak.hexcasting.api.casting.iota.DoubleIota;
-import at.petrak.hexcasting.common.lib.HexDataComponents;
 import at.petrak.hexcasting.common.lib.HexRegistries;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.neoforged.bus.EventBus;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -19,15 +16,13 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import org.ejml.MatrixFormattable;
 import org.ejml.simple.SimpleMatrix;
-import org.ejml.simple.ops.SimpleOperations_DDRM;
 import org.slf4j.Logger;
+import ram.talia.moreiotas.api.ChatEventHandler;
 import ram.talia.moreiotas.common.lib.hex.MoreIotasActions;
 import ram.talia.moreiotas.common.lib.hex.MoreIotasArithmetics;
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes;
-import thedarkcolour.kotlinforforge.neoforge.KotlinModLoadingContext;
-import org.ejml.dense.row.CommonOps_DDRM;
+import ram.talia.moreiotas.xplat.ForgeXplatImpl;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -71,6 +66,9 @@ public class MoreIotasNeoforge {
                 });
             });
         });
+
+        NeoForge.EVENT_BUS.addListener(ChatEventHandler::chatMessageSent);
+
         bind(HexRegistries.ARITHMETIC, MoreIotasArithmetics::register, bus);
         bind(HexRegistries.IOTA_TYPE, MoreIotasIotaTypes::registerTypes, bus);
     }
@@ -89,11 +87,9 @@ public class MoreIotasNeoforge {
 
     private <T> void bind(ResourceKey<? extends Registry<T>> registry, Consumer<BiConsumer<T, ResourceLocation>> source, IEventBus bus) {
         bus.addListener((RegisterEvent event) -> {
-            /*if (registry.equals(event.getRegistryKey())) {
-                source.accept((t, rl) -> {
-                    event.register(registry, rl, () -> t);
-                });
-            }*/
+            event.register(registry, actionRegistryEntryRegisterHelper -> {
+                source.accept((t, rl) -> actionRegistryEntryRegisterHelper.register(rl, t));
+            });
         });
     }
 }

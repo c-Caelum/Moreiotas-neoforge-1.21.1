@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.casting.iota.IotaType;
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -46,7 +47,7 @@ public class StringIota extends Iota {
 
     @Override
     public Component display() {
-        return null;
+        return Component.literal(String.format("\"%s\"", string)).withStyle(ChatFormatting.LIGHT_PURPLE);
     }
 
     @Override
