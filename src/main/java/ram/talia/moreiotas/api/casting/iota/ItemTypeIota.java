@@ -118,7 +118,7 @@ public class ItemTypeIota extends Iota {
     }
 
     public static IotaType<ItemTypeIota> TYPE = new IotaType<ItemTypeIota>() {
-        public static final MapCodec<ItemTypeIota> CODEC = Codec.STRING.<ItemTypeIota>xmap(ItemTypeIota::fromString, ItemTypeIota::turnIntoString).fieldOf("type");
+        public static final MapCodec<ItemTypeIota> CODEC = Codec.STRING.<ItemTypeIota>xmap(ItemTypeIota::fromString, ItemTypeIota::turnIntoString).fieldOf("item_type");
         public static final StreamCodec<RegistryFriendlyByteBuf, ItemTypeIota> STREAM_CODEC = ByteBufCodecs.STRING_UTF8.map(
                 ItemTypeIota::fromString, ItemTypeIota::turnIntoString
         ).mapStream(buf ->  buf);
