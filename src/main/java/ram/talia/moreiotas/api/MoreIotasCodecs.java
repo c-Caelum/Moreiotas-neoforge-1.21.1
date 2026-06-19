@@ -27,7 +27,6 @@ public class MoreIotasCodecs {
         int rows = matrix.getNumRows();
         int cols = matrix.getNumCols();
         List<List<Double>> list = new ArrayList<>();
-        LOGGER.info("len of list {}, rows {}.", list.size(), rows);
         if (rows * cols != 0) {
             for (int i = 0; i < rows; i++) {
                 List<Double> currentRow = new ArrayList<>();

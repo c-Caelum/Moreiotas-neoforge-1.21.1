@@ -33,7 +33,6 @@ public class ChatEventHandler {
     public static @Nullable String getLastMessage(@Nullable Player player) {
         if (player == null)
             return lastMessage;
-        LOGGER.info("Last message is {}.", lastMessages.get(player.getUUID()));
         return lastMessages.get(player.getUUID());
     }
 

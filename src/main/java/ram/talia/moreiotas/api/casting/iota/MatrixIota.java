@@ -39,7 +39,7 @@ public class MatrixIota extends Iota {
 
     @Override
     protected boolean toleratesOther(Iota that) {
-        return false;
+        return typesMatch(that, this) && matrix.isIdentical(((MatrixIota) that).matrix, DoubleIota.TOLERANCE);
     }
 
     @Override
