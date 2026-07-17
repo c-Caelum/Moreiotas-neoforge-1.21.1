@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ram.talia.moreiotas.MoreIotas;
 
 import static ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.ITEM_TYPE;
 
@@ -101,7 +102,8 @@ public class ItemTypeIota extends Iota {
             return new ItemTypeIota(BuiltInRegistries.ITEM.get(location));
         } else {
             ResourceLocation location = ResourceLocation.read(str.substring(6)).getOrThrow();
-            return new ItemTypeIota(BuiltInRegistries.BLOCK.get(location));
+            Block block = BuiltInRegistries.BLOCK.get(location);
+            return new ItemTypeIota(block);
         }
     }
 
@@ -118,7 +120,7 @@ public class ItemTypeIota extends Iota {
     }
 
     public static IotaType<ItemTypeIota> TYPE = new IotaType<ItemTypeIota>() {
-        public static final MapCodec<ItemTypeIota> CODEC = Codec.STRING.<ItemTypeIota>xmap(ItemTypeIota::fromString, ItemTypeIota::turnIntoString).fieldOf("type");
+        public static final MapCodec<ItemTypeIota> CODEC = Codec.STRING.<ItemTypeIota>xmap(ItemTypeIota::fromString, ItemTypeIota::turnIntoString).fieldOf("item_block_type");
         public static final StreamCodec<RegistryFriendlyByteBuf, ItemTypeIota> STREAM_CODEC = ByteBufCodecs.STRING_UTF8.map(
                 ItemTypeIota::fromString, ItemTypeIota::turnIntoString
         ).mapStream(buf ->  buf);
