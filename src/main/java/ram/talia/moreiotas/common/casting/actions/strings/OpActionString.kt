@@ -5,12 +5,12 @@ import at.petrak.hexcasting.api.casting.PatternShapeMatch
 import at.petrak.hexcasting.api.casting.asActionResult
 import at.petrak.hexcasting.api.casting.castables.ConstMediaAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
-import at.petrak.hexcasting.api.casting.eval.SpecialPatterns.*
 import at.petrak.hexcasting.api.casting.getPattern
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.mod.HexTags
 import at.petrak.hexcasting.api.utils.isOfTag
 import at.petrak.hexcasting.common.casting.PatternRegistryManifest
+import at.petrak.hexcasting.common.lib.hex.HexActions
 import at.petrak.hexcasting.xplat.IXplatAbstractions
 import net.minecraft.network.chat.Component
 import ram.talia.moreiotas.api.asActionResult
@@ -24,16 +24,16 @@ object OpActionString : ConstMediaAction {
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
         val pattern = args.getPattern(0, argc)
 
-        if (pattern.sigsEqual(INTROSPECTION))
+        if (pattern.sigsEqual(HexActions.OPEN_PAREN.prototype))
             return Component.translatable("hexcasting.action.rawhook.hexcasting:open_paren").string.asActionResult
-        if (pattern.sigsEqual(RETROSPECTION))
+        if (pattern.sigsEqual(HexActions.CLOSE_PAREN.prototype))
             return Component.translatable("hexcasting.action.rawhook.hexcasting:close_paren").string.asActionResult
-        if (pattern.sigsEqual(CONSIDERATION))
+        if (pattern.sigsEqual(HexActions.ESCAPE.prototype))
             return Component.translatable("hexcasting.action.rawhook.hexcasting:escape").string.asActionResult
-        if (pattern.sigsEqual(EVANITION))
+        if (pattern.sigsEqual(HexActions.UNDO.prototype))
             return Component.translatable("hexcasting.action.rawhook.hexcasting:undo").string.asActionResult
 
-        val action = PatternRegistryManifest.matchPattern(pattern, env, false) ?: return null.asActionResult
+        val action = PatternRegistryManifest.matchPattern(pattern, env) ?: return null.asActionResult
 
         return when (action) {
             is PatternShapeMatch.Normal ->

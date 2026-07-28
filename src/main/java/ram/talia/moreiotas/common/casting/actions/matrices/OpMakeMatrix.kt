@@ -22,16 +22,16 @@ object OpMakeMatrix : ConstMediaAction {
             is Vec3Iota -> return arg.vec3.asMatrix.asActionResult
             is ListIota -> {
                 val list = arg.list
-                if (!list.nonEmpty)
+                if (list.isEmpty())
                     return SimpleMatrix.filled(0,0, 0.0).asActionResult
 
-                val numRows = when (val car = list.car) {
+                val numRows = when (val car = list.get(0)) {
                     is DoubleIota -> 1
                     is Vec3Iota -> 3
-                    is ListIota -> car.list.size()
+                    is ListIota -> car.list.size
                     else -> throw MishapInvalidIota.ofType(arg, 0, "possible_matrix")
                 }
-                val numCols = list.size()
+                val numCols = list.size
 
                 if (numRows > MoreIotasConfig.maxMatrixSize.get() || numCols > MoreIotasConfig.maxMatrixSize.get())
                     throw MishapInvalidIota.of(arg, 0, "matrix.max_size", MoreIotasConfig.maxMatrixSize.get(), numRows, numCols)
@@ -52,7 +52,7 @@ object OpMakeMatrix : ConstMediaAction {
                             matrix.set(2, col, vec.z)
                         }
                         is ListIota -> {
-                            if (numRows != iota.list.size()) throw MishapInvalidIota.ofType(arg, 0, "possible_matrix")
+                            if (numRows != iota.list.size) throw MishapInvalidIota.ofType(arg, 0, "possible_matrix")
                             iota.list.forEachIndexed { row, innerIota ->
                                 if (innerIota !is DoubleIota) throw MishapInvalidIota.ofType(arg, 0, "possible_matrix")
                                 matrix.set(row, col, innerIota.double)
