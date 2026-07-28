@@ -16,7 +16,7 @@ import ram.talia.moreiotas.api.times
 import ram.talia.moreiotas.common.casting.arithmetic.operator.nextNumOrVecOrMatrix
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.MATRIX
 
-object OperatorMatrixMul : OperatorBasic(2, any(ofType(MATRIX), or(ofType(DOUBLE), ofType(VEC3)))) {
+object OperatorMatrixMul : OperatorBasic(2, any(ofType(MATRIX), or(ofType(DOUBLE.get()), ofType(VEC3.get())))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator().withIndex()
         val arg0 = it.nextNumOrVecOrMatrix(arity)

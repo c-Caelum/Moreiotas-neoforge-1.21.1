@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
 
 object OperatorStringReplace : OperatorBasic(3,
         IotaMultiPredicate.triple(IotaPredicate.ofType(STRING),
-        IotaPredicate.or(IotaPredicate.ofType(DOUBLE), IotaPredicate.ofType(STRING)),
+        IotaPredicate.or(IotaPredicate.ofType(DOUBLE.get()), IotaPredicate.ofType(STRING)),
         IotaPredicate.ofType(STRING))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator().withIndex()

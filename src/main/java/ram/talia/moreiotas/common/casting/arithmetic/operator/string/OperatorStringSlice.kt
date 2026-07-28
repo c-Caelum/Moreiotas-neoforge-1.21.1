@@ -13,7 +13,7 @@ import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.STRING
 import kotlin.math.max
 import kotlin.math.min
 
-object OperatorStringSlice : OperatorBasic(3, IotaMultiPredicate.triple(IotaPredicate.ofType(STRING), IotaPredicate.ofType(DOUBLE), IotaPredicate.ofType(DOUBLE))) {
+object OperatorStringSlice : OperatorBasic(3, IotaMultiPredicate.triple(IotaPredicate.ofType(STRING), IotaPredicate.ofType(DOUBLE.get()), IotaPredicate.ofType(DOUBLE.get()))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator().withIndex()
         val string = it.nextString(arity)

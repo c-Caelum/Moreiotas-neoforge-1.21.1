@@ -16,7 +16,7 @@ import ram.talia.moreiotas.common.casting.arithmetic.operator.nextPositiveInt
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.ITEM_STACK
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.ITEM_TYPE
 
-object OperatorMakeItem : OperatorBasic(2, IotaMultiPredicate.pair(any(ofType(ITEM_TYPE), ofType(ITEM_STACK)), ofType(DOUBLE)))  {
+object OperatorMakeItem : OperatorBasic(2, IotaMultiPredicate.pair(any(ofType(ITEM_TYPE), ofType(ITEM_STACK)), ofType(DOUBLE.get())))  {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator().withIndex()
         val (idx, typeOrStack) = it.next()

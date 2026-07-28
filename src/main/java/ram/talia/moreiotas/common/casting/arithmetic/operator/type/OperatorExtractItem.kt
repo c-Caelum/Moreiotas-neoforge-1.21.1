@@ -20,7 +20,7 @@ import ram.talia.moreiotas.api.asActionResult
 import ram.talia.moreiotas.api.casting.iota.ItemStackIota
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.ITEM_STACK
 
-object OperatorExtractItem : OperatorBasic(1, IotaMultiPredicate.all(any(ofType(VEC3), ofType(ENTITY), ofType(ITEM_STACK)))) {
+object OperatorExtractItem : OperatorBasic(1, IotaMultiPredicate.all(any(ofType(VEC3.get()), ofType(ENTITY.get()), ofType(ITEM_STACK)))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val iota = iotas.first()
 

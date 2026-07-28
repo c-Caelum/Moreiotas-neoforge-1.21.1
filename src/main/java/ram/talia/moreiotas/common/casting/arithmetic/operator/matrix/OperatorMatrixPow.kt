@@ -20,7 +20,7 @@ import kotlin.math.*
 import ram.talia.moreiotas.api.matrices.MatrixExponentials.matrixExponential;
 import org.ejml.simple.SimpleMatrix
 
-object OperatorMatrixPow : OperatorBasic(2, either(pair(ofType(MATRIX), ofType(DOUBLE)), pair(ofType(DOUBLE), ofType(MATRIX)))) {
+object OperatorMatrixPow : OperatorBasic(2, either(pair(ofType(MATRIX), ofType(DOUBLE.get())), pair(ofType(DOUBLE.get()), ofType(MATRIX)))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator().withIndex()
         val arg0 = it.nextNumOrVecOrMatrix(arity)

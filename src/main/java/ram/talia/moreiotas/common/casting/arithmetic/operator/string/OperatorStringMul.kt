@@ -15,8 +15,8 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 
 object OperatorStringMul : OperatorBasic(2, IotaMultiPredicate.either(
-        IotaMultiPredicate.pair(IotaPredicate.ofType(MoreIotasIotaTypes.STRING), IotaPredicate.ofType(HexIotaTypes.DOUBLE)),
-        IotaMultiPredicate.pair(IotaPredicate.ofType(HexIotaTypes.DOUBLE), IotaPredicate.ofType(MoreIotasIotaTypes.STRING)))) {
+        IotaMultiPredicate.pair(IotaPredicate.ofType(MoreIotasIotaTypes.STRING), IotaPredicate.ofType(HexIotaTypes.DOUBLE.get())),
+        IotaMultiPredicate.pair(IotaPredicate.ofType(HexIotaTypes.DOUBLE.get()), IotaPredicate.ofType(MoreIotasIotaTypes.STRING)))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator()
         val first = it.next()

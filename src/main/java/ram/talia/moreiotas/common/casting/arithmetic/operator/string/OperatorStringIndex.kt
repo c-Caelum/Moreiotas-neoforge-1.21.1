@@ -11,11 +11,11 @@ import ram.talia.moreiotas.api.asActionResult
 import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.STRING
 import kotlin.math.roundToInt
 
-object OperatorStringIndex : OperatorBasic(2, IotaMultiPredicate.pair(IotaPredicate.ofType(STRING), IotaPredicate.ofType(DOUBLE))) {
+object OperatorStringIndex : OperatorBasic(2, IotaMultiPredicate.pair(IotaPredicate.ofType(STRING), IotaPredicate.ofType(DOUBLE.get()))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator()
         val str = downcast(it.next(), STRING).string
-        val index = downcast(it.next(), DOUBLE).double
+        val index = downcast(it.next(), DOUBLE.get()).double
         return str.getOrNull(index.roundToInt())?.toString()?.asActionResult ?: null.asActionResult
     }
 }

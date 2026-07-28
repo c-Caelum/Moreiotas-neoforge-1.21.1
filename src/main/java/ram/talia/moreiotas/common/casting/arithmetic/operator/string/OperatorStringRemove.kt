@@ -15,7 +15,7 @@ import ram.talia.moreiotas.common.lib.hex.MoreIotasIotaTypes.STRING
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
-object OperatorStringRemove : OperatorBasic(2, IotaMultiPredicate.pair(IotaPredicate.ofType(STRING), IotaPredicate.or(IotaPredicate.ofType(STRING), IotaPredicate.ofType(DOUBLE)))) {
+object OperatorStringRemove : OperatorBasic(2, IotaMultiPredicate.pair(IotaPredicate.ofType(STRING), IotaPredicate.or(IotaPredicate.ofType(STRING), IotaPredicate.ofType(DOUBLE.get())))) {
     override fun apply(iotas: Iterable<Iota>, env: CastingEnvironment): Iterable<Iota> {
         val it = iotas.iterator().withIndex()
         val removeFrom = it.nextString(arity)
