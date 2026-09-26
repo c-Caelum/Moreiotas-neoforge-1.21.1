@@ -19,9 +19,9 @@ import java.util.function.Function
 
 object ItemArithmetic : Arithmetic {
     @JvmField
-    val EXTRACT_ITEM: HexPattern = HexPattern.fromAngles("qaqqaea", HexDir.EAST)
+    val EXTRACT_ITEM: HexPattern = HexPattern.fromAngleString("qaqqaea", HexDir.EAST)
     @JvmField
-    val MAKE_ITEM: HexPattern = HexPattern.fromAngles("adeeedew", HexDir.EAST)
+    val MAKE_ITEM: HexPattern = HexPattern.fromAngleString("adeeedew", HexDir.EAST)
 
     private val OPS = listOf(
         ABS,

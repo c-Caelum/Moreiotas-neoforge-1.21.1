@@ -28,10 +28,10 @@ import kotlin.math.ceil
 import kotlin.math.floor
 
 object MatrixArithmetic : Arithmetic {
-    @JvmField val ALTADD = HexPattern.fromAngles("waawawaeawwaea", HexDir.EAST)
-    @JvmField val ALTMUL = HexPattern.fromAngles("waqawawwaeaww", HexDir.SOUTH_EAST)
-    @JvmField val ALTDIV = HexPattern.fromAngles("wdedwdwwdqdww", HexDir.NORTH_EAST)
-    @JvmField val ALTPOW = HexPattern.fromAngles("wedewqawwawqwa", HexDir.NORTH_EAST)
+    @JvmField val ALTADD = HexPattern.fromAngleString("waawawaeawwaea", HexDir.EAST)
+    @JvmField val ALTMUL = HexPattern.fromAngleString("waqawawwaeaww", HexDir.SOUTH_EAST)
+    @JvmField val ALTDIV = HexPattern.fromAngleString("wdedwdwwdqdww", HexDir.NORTH_EAST)
+    @JvmField val ALTPOW = HexPattern.fromAngleString("wedewqawwawqwa", HexDir.NORTH_EAST)
 
     private val OPS = listOf(
         ADD,

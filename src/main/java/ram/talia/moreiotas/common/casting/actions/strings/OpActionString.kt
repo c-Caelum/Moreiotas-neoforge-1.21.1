@@ -24,13 +24,13 @@ object OpActionString : ConstMediaAction {
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
         val pattern = args.getPattern(0, argc)
 
-        if (pattern.sigsEqual(HexActions.OPEN_PAREN.value().prototype))
+        if (pattern.signature == (HexActions.OPEN_PAREN.value().prototype.signature))
             return Component.translatable("hexcasting.action.rawhook.hexcasting:open_paren").string.asActionResult
-        if (pattern.sigsEqual(HexActions.CLOSE_PAREN.value().prototype))
+        if (pattern.signature == (HexActions.CLOSE_PAREN.value().prototype).signature)
             return Component.translatable("hexcasting.action.rawhook.hexcasting:close_paren").string.asActionResult
-        if (pattern.sigsEqual(HexActions.ESCAPE.value().prototype))
+        if (pattern.signature == (HexActions.ESCAPE.value().prototype).signature)
             return Component.translatable("hexcasting.action.rawhook.hexcasting:escape").string.asActionResult
-        if (pattern.sigsEqual(HexActions.UNDO.value().prototype))
+        if (pattern.signature == (HexActions.UNDO.value().prototype).signature)
             return Component.translatable("hexcasting.action.rawhook.hexcasting:undo").string.asActionResult
 
         val action = PatternRegistryManifest.matchPattern(pattern, env) ?: return null.asActionResult

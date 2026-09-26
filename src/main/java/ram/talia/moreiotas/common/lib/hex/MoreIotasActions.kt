@@ -8,7 +8,7 @@ import at.petrak.hexcasting.api.casting.castables.OperationAction
 import at.petrak.hexcasting.api.casting.math.HexDir
 import at.petrak.hexcasting.api.casting.math.HexDir.*
 import at.petrak.hexcasting.api.casting.math.HexPattern
-import at.petrak.hexcasting.api.casting.math.HexPattern.Companion.fromAngles
+import at.petrak.hexcasting.api.casting.math.HexPattern.fromAngleString
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.InteractionHand
 import ram.talia.moreiotas.MoreIotas.id;
@@ -37,7 +37,7 @@ object MoreIotasActions {
 
 	private fun make(name: String, are: ActionRegistryEntry): ActionRegistryEntry {
 		return if (ACTIONS.put(id(name), are) != null) {
-			throw IllegalArgumentException("Typo? Duplicate id $name")
+			throw kotlin.IllegalArgumentException("Typo? Duplicate id $name")
 		} else {
 			are
 		}
@@ -55,124 +55,124 @@ object MoreIotasActions {
 	// ================================ Strings =======================================
 	@JvmField
 	val STRING_EMPTY = make("string/empty",
-			fromAngles("awdwa", SOUTH_EAST),
+			fromAngleString("awdwa", SOUTH_EAST),
 			Action.makeConstantOp(StringIota.makeUnchecked("")))
 	@JvmField
 	val STRING_SPACE = make("string/space",
-			fromAngles("awdwaaww", SOUTH_EAST),
+			fromAngleString("awdwaaww", SOUTH_EAST),
 			Action.makeConstantOp(StringIota.makeUnchecked(" ")))
 	@JvmField
 	val STRING_COMMA = make("string/comma",
-			fromAngles("qa", EAST),
+			fromAngleString("qa", EAST),
 			Action.makeConstantOp(StringIota.makeUnchecked(",")))
 	@JvmField
 	val STRING_NEWLINE = make("string/newline",
-			fromAngles("waawaw", EAST),
+			fromAngleString("waawaw", EAST),
 			Action.makeConstantOp(StringIota.makeUnchecked("\n")))
 	@JvmField
-	val STRING_BLOCK_GET = make("string/block/get", fromAngles("awqwawqe", EAST), OpGetBlockString)
+	val STRING_BLOCK_GET = make("string/block/get", fromAngleString("awqwawqe", EAST), OpGetBlockString)
 	@JvmField
-	val STRING_BLOCK_SET = make("string/block/set", fromAngles("dwewdweq", WEST), OpSetBlockString)
+	val STRING_BLOCK_SET = make("string/block/set", fromAngleString("dwewdweq", WEST), OpSetBlockString)
 	@JvmField
-	val STRING_CHAT_CASTER = make("string/chat/caster", fromAngles("waqa", EAST), OpChatString(false))
+	val STRING_CHAT_CASTER = make("string/chat/caster", fromAngleString("waqa", EAST), OpChatString(false))
 	@JvmField
-	val STRING_CHAT_ALL = make("string/chat/all", fromAngles("wded", EAST), OpChatString(true))
+	val STRING_CHAT_ALL = make("string/chat/all", fromAngleString("wded", EAST), OpChatString(true))
 	@JvmField
-	val STRING_CHAT_PREFIX_GET = make("string/chat/prefix/get", fromAngles("ewded", NORTH_EAST), OpGetChatPrefix)
+	val STRING_CHAT_PREFIX_GET = make("string/chat/prefix/get", fromAngleString("ewded", NORTH_EAST), OpGetChatPrefix)
 	@JvmField
-	val STRING_CHAT_PREFIX_SET = make("string/chat/prefix/set", fromAngles("qwaqa", SOUTH_EAST), OpSetChatPrefix)
+	val STRING_CHAT_PREFIX_SET = make("string/chat/prefix/set", fromAngleString("qwaqa", SOUTH_EAST), OpSetChatPrefix)
 	@JvmField
-	val STRING_IOTA = make("string/iota", fromAngles("wawqwawaw", EAST), OpIotaString)
+	val STRING_IOTA = make("string/iota", fromAngleString("wawqwawaw", EAST), OpIotaString)
 	@JvmField
-	val STRING_ACTION = make("string/action", fromAngles("wdwewdwdw", HexDir.NORTH_WEST), OpActionString)
+	val STRING_ACTION = make("string/action", fromAngleString("wdwewdwdw", HexDir.NORTH_WEST), OpActionString)
 	@JvmField
-	val STRING_NAME_GET = make("string/name/get", fromAngles("deqqeddqwqqqwq", SOUTH_EAST), OpNameGet)
+	val STRING_NAME_GET = make("string/name/get", fromAngleString("deqqeddqwqqqwq", SOUTH_EAST), OpNameGet)
 	@JvmField
-	val STRING_NAME_SET = make("string/name/set", fromAngles("aqeeqaaeweeewe", SOUTH_WEST), OpNameSet)
+	val STRING_NAME_SET = make("string/name/set", fromAngleString("aqeeqaaeweeewe", SOUTH_WEST), OpNameSet)
 
 	@JvmField
-	val STRING_SPLIT = make("string/split", fromAngles("aqwaqa", EAST), OpSplitString)
+	val STRING_SPLIT = make("string/split", fromAngleString("aqwaqa", EAST), OpSplitString)
 	@JvmField
-	val STRING_PARSE = make("string/parse", fromAngles("aqwaq", EAST), OpParseString)
+	val STRING_PARSE = make("string/parse", fromAngleString("aqwaq", EAST), OpParseString)
 	@JvmField
-	val STRING_CASE = make("string/case", fromAngles("dwwdwwdwdd", WEST), OpCaseString)
+	val STRING_CASE = make("string/case", fromAngleString("dwwdwwdwdd", WEST), OpCaseString)
 
 	// ================================ Matrices =======================================
 	// Operator Actions
 	@JvmField
-	val ALTADD = make("altadd", OperationAction(fromAngles("waawawaeawwaea", EAST)))
+	val ALTADD = make("altadd", OperationAction(fromAngleString("waawawaeawwaea", EAST)))
 	@JvmField
-	val ALTMUL = make("altmul", OperationAction(fromAngles("waqawawwaeaww", SOUTH_EAST)))
+	val ALTMUL = make("altmul", OperationAction(fromAngleString("waqawawwaeaww", SOUTH_EAST)))
 	@JvmField
-	val ALTDIV = make("altdiv", OperationAction(fromAngles("wdedwdwwdqdww", NORTH_EAST)))
+	val ALTDIV = make("altdiv", OperationAction(fromAngleString("wdedwdwwdqdww", NORTH_EAST)))
 	@JvmField
-	val ALTPOW = make("altpow", OperationAction(fromAngles("wedewqawwawqwa", NORTH_EAST)))
+	val ALTPOW = make("altpow", OperationAction(fromAngleString("wedewqawwawqwa", NORTH_EAST)))
 
 	@JvmField
-	val MATRIX_MAKE = make("matrix/make", fromAngles("awwaeawwaadwa", SOUTH_WEST), OpMakeMatrix)
+	val MATRIX_MAKE = make("matrix/make", fromAngleString("awwaeawwaadwa", SOUTH_WEST), OpMakeMatrix)
 	@JvmField
-	val MATRIX_UNMAKE = make("matrix/unmake", fromAngles("dwwdqdwwddawd", SOUTH_EAST), OpUnmakeMatrix(false))
+	val MATRIX_UNMAKE = make("matrix/unmake", fromAngleString("dwwdqdwwddawd", SOUTH_EAST), OpUnmakeMatrix(false))
 	@JvmField
-	val MATRIX_UNMAKE_DIRECT = make("matrix/unmake/direct", fromAngles("dwwdqdwwdwdwa", SOUTH_EAST), OpUnmakeMatrix(true))
+	val MATRIX_UNMAKE_DIRECT = make("matrix/unmake/direct", fromAngleString("dwwdqdwwdwdwa", SOUTH_EAST), OpUnmakeMatrix(true))
 	@JvmField
-	val MATRIX_IDENTITY = make("matrix/identity", fromAngles("awwaeawwaqw", SOUTH_WEST), OpIdentityMatrix)
+	val MATRIX_IDENTITY = make("matrix/identity", fromAngleString("awwaeawwaqw", SOUTH_WEST), OpIdentityMatrix)
 	@JvmField
-	val MATRIX_ZERO = make("matrix/zero", fromAngles("awwaeawwa", SOUTH_WEST), OpZeroMatrix)
+	val MATRIX_ZERO = make("matrix/zero", fromAngleString("awwaeawwa", SOUTH_WEST), OpZeroMatrix)
 	@JvmField
-	val MATRIX_ROTATION = make("matrix/rotation", fromAngles("awwaeawwawawddw", SOUTH_WEST), OpRotationMatrix)
+	val MATRIX_ROTATION = make("matrix/rotation", fromAngleString("awwaeawwawawddw", SOUTH_WEST), OpRotationMatrix)
 	@JvmField
-	val MATRIX_INVERSE = make("matrix/inverse", fromAngles("wwdqdwwdqaq", WEST), OpInverseMatrix)
+	val MATRIX_INVERSE = make("matrix/inverse", fromAngleString("wwdqdwwdqaq", WEST), OpInverseMatrix)
 	@JvmField
-	val MATRIX_DETERMINANT = make("matrix/determinant", fromAngles("aeawwaeawaw", WEST), OpDeterminantMatrix)
+	val MATRIX_DETERMINANT = make("matrix/determinant", fromAngleString("aeawwaeawaw", WEST), OpDeterminantMatrix)
 	@JvmField
 	val MATRIX_CONCAT_VERT = make(
 			"matrix/concat/vert",
-			fromAngles("awwaeawwawawdedwa", SOUTH_WEST),
+			fromAngleString("awwaeawwawawdedwa", SOUTH_WEST),
 			OpConcatMatrix(true))
 	@JvmField
 	val MATRIX_CONCAT_HORI = make(
 			"matrix/concat/hori",
-			fromAngles("dwwdqdwwdwdwaqawd", SOUTH_EAST),
+			fromAngleString("dwwdqdwwdwdwaqawd", SOUTH_EAST),
 			OpConcatMatrix(false))
 	@JvmField
 	val MATRIX_SPLIT_VERT = make(
 			"matrix/split/vert",
-			fromAngles("awdedwawawwaeawwa", SOUTH_EAST),
+			fromAngleString("awdedwawawwaeawwa", SOUTH_EAST),
 			OpSplitMatrix(true))
 	@JvmField
 	val MATRIX_SPLIT_HORI = make(
 			"matrix/split/hori",
-			fromAngles("dwaqawdwdwwdqdwwd", SOUTH_WEST),
+			fromAngleString("dwaqawdwdwwdqdwwd", SOUTH_WEST),
 			OpSplitMatrix(false))
 
 	// ================================ Types =======================================
 
 	@JvmField
-	val TYPE_TO_ITEM = make("type/to_item", OperationAction(fromAngles("qaqqaea", EAST)))
+	val TYPE_TO_ITEM = make("type/to_item", OperationAction(fromAngleString("qaqqaea", EAST)))
 	@JvmField
-	val TYPE_ENTITY = make("type/entity", fromAngles("qawde", SOUTH_WEST), OpTypeEntity)
+	val TYPE_ENTITY = make("type/entity", fromAngleString("qawde", SOUTH_WEST), OpTypeEntity)
 	@JvmField
-	val TYPE_IOTA = make("type/iota", fromAngles("awd", SOUTH_WEST), OpTypeIota)
+	val TYPE_IOTA = make("type/iota", fromAngleString("awd", SOUTH_WEST), OpTypeIota)
 	@JvmField
-	val TYPE_ITEM_HELD = make("type/item_held", fromAngles("edeedqd", SOUTH_WEST), OpTypeItemHeld)
+	val TYPE_ITEM_HELD = make("type/item_held", fromAngleString("edeedqd", SOUTH_WEST), OpTypeItemHeld)
 
 	@JvmField
-	val GET_ENTITY_TYPE = make("get_entity/type", fromAngles("dadqqqqqdad", NORTH_EAST), OpGetEntityAtDyn)
+	val GET_ENTITY_TYPE = make("get_entity/type", fromAngleString("dadqqqqqdad", NORTH_EAST), OpGetEntityAtDyn)
 	@JvmField
-	val ZONE_ENTITY_TYPE = make("zone_entity/type", fromAngles("waweeeeewaw", SOUTH_EAST), OpGetEntitiesByDyn(false))
+	val ZONE_ENTITY_TYPE = make("zone_entity/type", fromAngleString("waweeeeewaw", SOUTH_EAST), OpGetEntitiesByDyn(false))
 	@JvmField
-	val ZONE_ENTITY_NOT_TYPE = make("zone_entity/not_type", fromAngles("wdwqqqqqwdw", NORTH_EAST), OpGetEntitiesByDyn(true))
+	val ZONE_ENTITY_NOT_TYPE = make("zone_entity/not_type", fromAngleString("wdwqqqqqwdw", NORTH_EAST), OpGetEntitiesByDyn(true))
 
 	// ================================ Item Stacks =======================================
 
 	@JvmField
-	val ITEM_GET_MAIN_HAND = make("item/main_hand", fromAngles("adeq", EAST), OpGetHeldItem(InteractionHand.MAIN_HAND))
+	val ITEM_GET_MAIN_HAND = make("item/main_hand", fromAngleString("adeq", EAST), OpGetHeldItem(InteractionHand.MAIN_HAND))
 	@JvmField
-	val ITEM_GET_OFF_HAND = make("item/off_hand", fromAngles("qeda", EAST), OpGetHeldItem(InteractionHand.OFF_HAND))
+	val ITEM_GET_OFF_HAND = make("item/off_hand", fromAngleString("qeda", EAST), OpGetHeldItem(InteractionHand.OFF_HAND))
 	@JvmField
-	val ITEM_GET_INVENTORY_STACKS = make("item/inventory/stacks", fromAngles("aqwed", NORTH_EAST), OpGetInventoryContents(returnStacks = true))
+	val ITEM_GET_INVENTORY_STACKS = make("item/inventory/stacks", fromAngleString("aqwed", NORTH_EAST), OpGetInventoryContents(returnStacks = true))
 	@JvmField
-	val ITEM_GET_INVENTORY_ITEMS = make("item/inventory/items", fromAngles("dewqa", NORTH_EAST), OpGetInventoryContents(returnStacks = false))
+	val ITEM_GET_INVENTORY_ITEMS = make("item/inventory/items", fromAngleString("dewqa", NORTH_EAST), OpGetInventoryContents(returnStacks = false))
 	@JvmField
-	val ITEM_MAKE = make("item/make", OperationAction(fromAngles("adeeedew", EAST)))
+	val ITEM_MAKE = make("item/make", OperationAction(fromAngleString("adeeedew", EAST)))
 }
