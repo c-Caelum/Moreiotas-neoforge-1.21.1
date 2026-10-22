@@ -42,10 +42,12 @@ object OpGetBlockString : ConstMediaAction {
             val book = blockEntity.book
 
             return if (book.`is`(Items.WRITABLE_BOOK))
-                book.components.get(DataComponents.WRITABLE_BOOK_CONTENT)?.pages()?.map { StringIota.make(it.toString()) }?.let { listOf(ListIota(it)) } ?: null.asActionResult
+                book.components.get(DataComponents.WRITABLE_BOOK_CONTENT)?.pages()?.map {
+                        StringIota.make(it.raw.toString())
+                    }?.let { listOf(ListIota(it)) } ?: null.asActionResult
                 else if (book.`is`(Items.WRITTEN_BOOK))
                 book.components.get(DataComponents.WRITTEN_BOOK_CONTENT)?.pages()?.map {
-                        StringIota.make(it.toString())
+                        StringIota.make(it.raw.toString())
                     }?.let { listOf(ListIota(it)) } ?: null.asActionResult
                 else null.asActionResult
         }
