@@ -3,6 +3,7 @@ package ram.talia.moreiotas.api.casting.iota;
 import at.petrak.hexcasting.api.casting.iota.DoubleIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
@@ -71,7 +72,7 @@ public class MatrixIota extends Iota {
     }
 
     @Override
-    public boolean isTruthy() {
+    public boolean isTruthy(CastingEnvironment env) {
         // is true if it has entries, and at least one has abs(entry)>0
         return !matrixIsEmpty(matrix) && this.getMatrix().elementMaxAbs() > DoubleIota.TOLERANCE;
     }
