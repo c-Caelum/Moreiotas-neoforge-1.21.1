@@ -2,6 +2,7 @@ package ram.talia.moreiotas.api.casting.iota;
 
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.IotaType;
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -77,7 +78,7 @@ public class ItemTypeIota extends Iota {
     }
 
     @Override
-    public boolean isTruthy() {
+    public boolean isTruthy(CastingEnvironment env) {
         return this.getEither().map(
                 item -> !item.equals(Items.AIR),
                 block -> !block.defaultBlockState().isAir()
